@@ -1,0 +1,51 @@
+type Query {
+    #for proprietaire
+    listProprietaire : [ProprietaireDTO],
+    getProprietaireById(id : ID) : ProprietaireDTO
+    #for vehicule
+    listVehicule : [VehiculeDTO],
+    getVehiculeById(id : ID) : VehiculeDTO
+}
+
+type Mutation {
+    #for proprietaire
+    saveProprietaire(prop : Proprietaire) : ProprietaireDTO,
+    updateProprietaire(id : ID, prop : Proprietaire) : ProprietaireDTO,
+    deleteProprietaire(id : ID) : Boolean
+
+    #for vehicule
+    saveVehicule(vehicule : Vehicule) : VehiculeDTO,
+    updateVehicule(id : ID, vehicule : Vehicule) : VehiculeDTO,
+    deleteVehicule(id : ID) : Boolean
+}
+
+type ProprietaireDTO{
+    id : ID,
+    nom : String,
+    date_naissance : String,
+    email : String
+}
+
+type VehiculeDTO{
+    id : ID,
+    numero_immatrication : String,
+    marque : String,
+    puissance_fiscale : Float,
+    model : String,
+    proprietaire : ProprietaireDTO
+}
+
+input Vehicule{
+    numero_immatrication : String,
+    marque : String,
+    puissance_fiscale : Float,
+    model : String,
+    proprietaire : Proprietaire
+}
+
+input Proprietaire{
+    nom : String,
+    date_naissance : String,
+    email : String
+}
+
